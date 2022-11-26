@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:latest
+FROM google/cloud-sdk:410.0.0
 
 LABEL maintainer "Greg Horie"
 
