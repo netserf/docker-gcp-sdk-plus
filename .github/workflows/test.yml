@@ -24,7 +24,7 @@ jobs:
           echo "MYVAR1: ${{ env.MYVAR1 }}"
           echo "MYVAR2: ${{ env.MYVAR2 }}"
           echo "GITHUB_ENV: $GITHUB_ENV"
-          echo "env: ${{ env }}"
+          echo "env: $(env)"
   docker-lint:
     runs-on: ubuntu-latest
     steps:
