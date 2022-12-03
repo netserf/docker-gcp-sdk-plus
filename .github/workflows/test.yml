@@ -10,10 +10,24 @@ env:
   IMAGE_NAME: "${{ github.repository }}:latest"
 
 jobs:
+  check-envvars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Check environment variables
+        uses: ./.github/actions/setvars
+        with:
+          varFilePath: ./.github/variables/myvars.env
+      - name: Output environment variables
+        run: |
+          echo "MYVAR1=${{ env.MYVAR1 }}"
+          echo "MYVAR2=${{ env.MYVAR2 }}"
   docker-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
       - uses: hadolint/hadolint-action@v2.0.0
         with:
           dockerfile: Dockerfile
