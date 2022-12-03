@@ -18,11 +18,12 @@ jobs:
       - name: Check environment variables
         uses: ./.github/actions/setvars
         with:
-          varFilePath: ./.github/variables/myvars.env
+          envVarPath: ./.github/envvars/myvars.env
       - name: Output environment variables
         run: |
           echo "MYVAR1=${{ env.MYVAR1 }}"
           echo "MYVAR2=${{ env.MYVAR2 }}"
+          echo "$GITHUB_ENV"
   docker-lint:
     runs-on: ubuntu-latest
     steps:

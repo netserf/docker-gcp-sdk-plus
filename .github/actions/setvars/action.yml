@@ -1,16 +1,16 @@
 name: Set environment variables
 description: Configures environment variables for a workflow
 inputs:
-  varFilePath:
+  envVarPath:
     description: |
       Path to variable file or directory.
       Runs against all files in the variables directory.
-      Default path: .github/variables/* (if none specified)
+      Default path: .github/envvars/* (if none specified)
     required: false
-    default: ./.github/variables/*
+    default: ./.github/envvars/*
 runs:
   using: composite
   steps:
     - run: |
-        sed "" ${{ inputs.varFilePath }} >> $GITHUB_ENV
+        sed "" ${{ inputs.envVarPath }} >> $GITHUB_ENV
       shell: bash
