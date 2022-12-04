@@ -26,7 +26,7 @@ jobs:
       - name: Generate docker tag
         run: |
           git fetch --force --tags
-          git tags
+          git tag
           UNIQUE_ID=$(git describe --tags --always)
           IMAGE_VERSION=$(git tag | tail -1)
           UNIQUE_IMAGE_TAG="${{ github.repository }}:${IMAGE_VERSION}-${UNIQUE_ID}"
