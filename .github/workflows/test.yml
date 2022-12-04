@@ -25,8 +25,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Generate docker tag
         run: |
-          GIT_VERSION=$(git describe --tags)
-          UNIQUE_IMAGE_TAG="${{ github.repository }}:${GIT_VERSION}"
+          UNIQUE_ID=$(git describe --always --abbrev --tags --long)
+          IMAGE_VERSION=$(git tag | tail -1)
+          UNIQUE_IMAGE_TAG="${{ github.repository }}:${IMAGE_VERSION}-${GIT_VERSION}"
           echo "UNIQUE_IMAGE_TAG=$UNIQUE_IMAGE_TAG" >> $GITHUB_ENV
       - name: Show docker tag
         run: echo "UNIQUE_IMAGE_TAG=${{ env.UNIQUE_IMAGE_TAG }}"
