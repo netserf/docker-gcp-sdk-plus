@@ -29,7 +29,6 @@ jobs:
           GIT_VERSION=$(git describe --always --abbrev --tags --long)
           UNIQUE_IMAGE_TAG="${{ github.repository }}:${GIT_VERSION}"
           echo "UNIQUE_IMAGE_TAG=$UNIQUE_IMAGE_TAG" >> $GITHUB_ENV
-      - name: Set up Docker Buildx
       - name: Show docker tag
         run: echo "UNIQUE_IMAGE_TAG=${{ env.UNIQUE_IMAGE_TAG }}"
       - name: Docker build
