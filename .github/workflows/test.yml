@@ -23,6 +23,13 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+      - name: Generate docker tag
+        run: |
+          GIT_VERSION=$(git describe --always --abbrev --tags --long)
+          UNIQUE_IMAGE_TAG="${{ github.repository }}:${GIT_VERSION}"
+          echo "UNIQUE_IMAGE_TAG=$UNIQUE_IMAGE_TAG" >> $GITHUB_ENV
+      - name: Show docker tag
+        run: echo "UNIQUE_IMAGE_TAG=${{ env.UNIQUE_IMAGE_TAG }}"
       - name: Docker build
         run: docker build -t "${IMAGE_NAME}" .
       - name: Run CST
