@@ -26,6 +26,7 @@ jobs:
       - name: Generate docker tag
         run: |
           ls -la
+          git branch
           git status
           git tag
           UNIQUE_ID=$(git describe --always --abbrev --tags --long)
